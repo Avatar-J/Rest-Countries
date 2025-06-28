@@ -1,0 +1,28 @@
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin gridLayout($repeat: 4) {
+  display: grid;
+  grid-template-columns: repeat($repeat, 1fr);
+}
+
+@mixin actionButton($bg-color: #5c1e8a) {
+  background-color: $bg-color;
+  color: $white;
+  padding: 5px 20px;
+  border-radius: 999px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin breakpoint($bp: 0) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
