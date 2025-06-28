@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CountryCardComponent } from '../../components/country-card/country-card.component';
+import { CountryApiService } from '../../services/country-api.service';
 
 @Component({
   selector: 'app-country-list',
@@ -7,4 +8,12 @@ import { CountryCardComponent } from '../../components/country-card/country-card
   templateUrl: './country-list.component.html',
   styleUrl: './country-list.component.scss',
 })
-export class CountryListComponent {}
+export class CountryListComponent implements OnInit {
+  CountryApiService = inject(CountryApiService);
+
+  ngOnInit(): void {
+    this.CountryApiService.getCountries().subscribe((data) => {
+      console.log(data);
+    });
+  }
+}
