@@ -2,7 +2,7 @@
 @use "../../styles/mixins" as *;
 
 .country-list-container {
-  width: 100%;
+  width: 1200px;
 
   .filter-section {
     width: 100%;
@@ -24,6 +24,6 @@
 
   .country-list {
     @include gridLayout(4);
-    gap: 74px;
+    gap: 40px;
   }
 }
