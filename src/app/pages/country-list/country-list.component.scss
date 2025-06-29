@@ -1,0 +1,29 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.country-list-container {
+  width: 1200px;
+
+  .filter-section {
+    width: 100%;
+    @include flex(row, space-between, center);
+    margin-bottom: 40px;
+
+    input {
+      width: 480px;
+      height: 56px;
+      background: $card-bg;
+      padding: 20px;
+      outline: none;
+      border: none;
+    }
+
+    .filter {
+    }
+  }
+
+  .country-list {
+    @include gridLayout(4);
+    gap: 40px;
+  }
+}

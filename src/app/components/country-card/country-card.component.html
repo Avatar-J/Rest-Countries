@@ -1,0 +1,23 @@
+<div class="card-container">
+    <div class="flag">
+        <img [src]="country?.flags?.png" [alt]="country?.flags?.alt" />
+    </div>
+
+    <div class="country-info">
+        <h2>{{country?.name?.common}}</h2>
+
+        <div class="sub-detail">
+
+            <div>
+                Population: <span>{{country?.population}}</span>
+            </div>
+            <div>
+                Region: <span>{{country?.region}}</span>
+            </div>
+            <div>
+                Capital: <span>{{country?.capital}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
