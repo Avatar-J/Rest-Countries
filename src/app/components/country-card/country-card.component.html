@@ -1,21 +1,21 @@
 <div class="card-container">
     <div class="flag">
-        <img [src]="" alt="country flag" />
+        <img [src]="country?.flags?.png" [alt]="country?.flags?.alt" />
     </div>
 
     <div class="country-info">
-        <h2>Country Name</h2>
+        <h2>{{country?.name?.common}}</h2>
 
         <div class="sub-detail">
 
             <div>
-                Population: <span>100 000</span>
+                Population: <span>{{country?.population}}</span>
             </div>
             <div>
-                Region: <span>Europe</span>
+                Region: <span>{{country?.region}}</span>
             </div>
             <div>
-                Capital: <span>Berlin</span>
+                Capital: <span>{{country?.capital}}</span>
             </div>
         </div>
     </div>
