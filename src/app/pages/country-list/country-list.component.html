@@ -1,5 +1,12 @@
 <div class="country-list-container">
 
+    @if(loading$ | async){
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    }
+
     <section class="filter-section">
 
         <input type="text" placeholder="Search for a country" />
@@ -17,7 +24,7 @@
     </section>
 
     <section class="country-list">
-        @for (country of countries; track country.name.official) {
+        @for (country of allcountries$ | async; track country.name.official) {
         <app-country-card [country]="country"></app-country-card>
         }
     </section>
