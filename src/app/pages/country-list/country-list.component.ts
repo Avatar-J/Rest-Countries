@@ -6,18 +6,20 @@ import { Store } from '@ngrx/store';
 import {
   selectAllCountries,
   selectLoading,
+  selectFilteredCountries,
 } from '../../store/selectors/country.selector';
 import {
   loadCountries,
-  loadCountriesSuccess,
+  setSearchQuery,
 } from '../../store/actions/country.action';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { filter, Observable, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-country-list',
-  imports: [CountryCardComponent, CommonModule],
+  imports: [CountryCardComponent, CommonModule, FormsModule],
   templateUrl: './country-list.component.html',
   styleUrl: './country-list.component.scss',
 })
@@ -25,6 +27,7 @@ export class CountryListComponent implements OnInit {
   CountryApiService = inject(CountryApiService);
   allcountries$!: Observable<Country[]>;
   loading$!: Observable<boolean>;
+  searchQuery = '';
 
   constructor(private store: Store, private router: Router) {}
 
@@ -37,6 +40,10 @@ export class CountryListComponent implements OnInit {
       }
     });
 
-    this.allcountries$ = this.store.select(selectAllCountries);
+    this.allcountries$ = this.store.select(selectFilteredCountries);
+  }
+
+  onSearchChange(value: string) {
+    this.store.dispatch(setSearchQuery({ query: value }));
   }
 }
