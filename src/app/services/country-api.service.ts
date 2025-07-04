@@ -27,4 +27,18 @@ export class CountryApiService {
       })
     );
   }
+
+  getCountryByName(name: string): Observable<Country> {
+    return this.http
+      .get<Country>(
+        `https://restcountries.com/v3.1/name/${name}?fullText=true&fields=name,population,capital,region,subregion,languages,tld,currencies,borders,flags`
+      )
+      .pipe(
+        retry(3),
+        catchError((err: HttpErrorResponse) => {
+          this.errorHandler.handleError(err);
+          return throwError(() => err);
+        })
+      );
+  }
 }

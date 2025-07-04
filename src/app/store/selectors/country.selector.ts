@@ -19,6 +19,11 @@ export const selectSearchQuery = createSelector(
   (state) => state.searchQuery
 );
 
+export const selectSelectedCountry = createSelector(
+  selectCountryState,
+  (state) => state.selectedCountry
+);
+
 export const selectFilteredCountries = createSelector(
   selectAllCountries,
   selectSearchQuery,
