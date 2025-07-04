@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   selectCountry,
   loadCountryByName,
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-country-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './country-detail.component.html',
   styleUrl: './country-detail.component.scss',
 })

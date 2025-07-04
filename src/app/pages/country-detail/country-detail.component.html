@@ -40,6 +40,21 @@
                     <div><span>Languages:</span> {{getLanguages(country)}}</div>
                 </div>
             </div>
+
+            <div class="borders-wrapper">
+                <strong>Boarder Countries</strong>
+
+                <div class="borders">
+
+                    @for(c of country.borders; track $index){
+                    <a [routerLink]="">
+                        <div class="border">
+                            {{c}}
+                        </div>
+                    </a>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
