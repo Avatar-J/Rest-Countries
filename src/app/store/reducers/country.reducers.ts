@@ -7,6 +7,9 @@ import {
   setSearchQuery,
   setFilterRegion,
   selectCountry,
+  loadCountryByNameSuccess,
+  loadCountryByNameFailure,
+  loadCountryByName,
 } from '../actions/country.action';
 
 export const initialState: CountryState = {
@@ -41,5 +44,21 @@ export const countryReducer = createReducer(
   on(selectCountry, (state, { country }) => ({
     ...state,
     selectedCountry: country,
+  })),
+  on(loadCountryByNameSuccess, (state, { country }) => ({
+    ...state,
+    selectedCountry: country,
+    error: null,
+  })),
+
+  on(loadCountryByNameFailure, (state, { error }) => ({
+    ...state,
+    selectedCountry: null,
+    error,
+  })),
+  on(loadCountryByName, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
   }))
 );
