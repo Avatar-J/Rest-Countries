@@ -57,6 +57,23 @@
     }
 
     .filter {
+      width: 200px;
+      min-height: 56px;
+
+      select {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border: none;
+        outline: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      option {
+        outline: none;
+        background-color: transparent;
+      }
     }
   }
 

@@ -32,3 +32,19 @@ export const selectFilterRegion = createSelector(
   selectCountryState,
   (state) => state.filterRegion
 );
+
+export const selectCountriesByFiltering = createSelector(
+  selectAllCountries,
+  selectFilterRegion,
+  selectSearchQuery,
+  (countries, region, query) => {
+    if (!region && !query) return countries;
+    return countries.filter((c) => {
+      const matchesRegion =
+        !region || c.region.toLowerCase() === region.toLowerCase();
+      const matchesQuery =
+        !query || c.name.common.toLowerCase().includes(query.toLowerCase());
+      return matchesRegion && matchesQuery;
+    });
+  }
+);
