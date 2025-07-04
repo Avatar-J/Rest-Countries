@@ -1,0 +1,61 @@
+@if(loading$ | async){
+
+<div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+}
+<div class="details-container">
+
+    <div class="back">
+        <button (click)="onBackClicked()">
+            <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M6.46447 0.107445L7.64298 1.28596L3.75389 5.17504L11.1785 5.17504H18.6031L18.6031 6.82496L3.75389 6.82496L7.64298 10.714L6.46447 11.8926L0.57191 6L6.46447 0.107445Z"
+                    fill="#111517" />
+            </svg>
+            <span>Back</span>
+        </button>
+    </div>
+
+    <div class="details" *ngIf="countryDetails | async as country">
+        <div class="flag">
+            <img [src]="country.flags.png" />
+        </div>
+
+        <div class="right">
+            <h2>{{country.name.common}}</h2>
+
+            <div class="info">
+                <div class="left">
+                    <div><span>Native Name:</span> {{getNativeName(country)}}</div>
+                    <div><span>Population:</span> {{country.population}}</div>
+                    <div><span>Region:</span> {{country.region}}</div>
+                    <div><span>Sub Region:</span> {{country.subregion}}</div>
+                    <div><span>Capital:</span> {{country.capital}}</div>
+
+                </div>
+                <div class="right">
+                    <div><span>Top Level Domain:</span> {{country.tld}}</div>
+                    <div><span>Currencies:</span> {{getCurrency(country)}}</div>
+                    <div><span>Languages:</span> {{getLanguages(country)}}</div>
+                </div>
+            </div>
+
+            <div class="borders-wrapper">
+                <strong>Boarder Countries</strong>
+
+                <div class="borders">
+
+                    @for(c of country.borders; track $index){
+                    <a [routerLink]="['/details', c]">
+                        <div class="border">
+                            {{c}}
+                        </div>
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

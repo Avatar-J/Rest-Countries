@@ -21,7 +21,7 @@
         </div>
 
         <div class="filter">
-            <select>
+            <select (change)="onRegionChange($event)">
                 <option value="">Filter By Region</option>
                 <option value="Africa">Africa</option>
                 <option value="Asia">Asia</option>

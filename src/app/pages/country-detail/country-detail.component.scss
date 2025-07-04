@@ -1,0 +1,101 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid blue;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.details-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 0 20px;
+
+  .back {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    button {
+      background-color: $card-bg;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      width: 136px;
+      border: none;
+      outline: none;
+      display: flex;
+      gap: 10px;
+      padding: 20px;
+      border-radius: 8px;
+      align-items: center;
+    }
+  }
+
+  .details {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+
+    .borders-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+
+      .borders {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .border {
+          min-width: 96px;
+          text-align: center;
+          padding: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+    .flag {
+      width: 560px;
+      height: 401px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .right {
+      .info {
+        display: flex;
+        gap: 40px;
+      }
+    }
+  }
+}

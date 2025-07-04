@@ -26,3 +26,32 @@ export const selectCountry = createAction(
   '[Country] Select Country',
   props<{ country: Country }>()
 );
+
+export const loadCountryByName = createAction(
+  '[Country] Load Country By Name',
+  props<{ name: string }>()
+);
+
+export const loadCountryByNameSuccess = createAction(
+  '[Country] Load Country By Name Success',
+  props<{ country: Country }>()
+);
+
+export const loadCountryByNameFailure = createAction(
+  '[Country] Load Country By Name Failure',
+  props<{ error: string }>()
+);
+export const loadCountryByCode = createAction(
+  '[Country] Load Country By Code',
+  props<{ code: string }>()
+);
+
+export const loadCountryByCodeSuccess = createAction(
+  '[Country] Load Country By Code Success',
+  props<{ country: Country }>()
+);
+
+export const loadCountryByCodeFailure = createAction(
+  '[Country] Load Country By Code Failure',
+  props<{ error: string }>()
+);

@@ -6,11 +6,12 @@ import { Store } from '@ngrx/store';
 import {
   selectAllCountries,
   selectLoading,
-  selectFilteredCountries,
+  selectCountriesByFiltering,
 } from '../../store/selectors/country.selector';
 import {
   loadCountries,
   setSearchQuery,
+  setFilterRegion,
 } from '../../store/actions/country.action';
 import { Router } from '@angular/router';
 import { filter, Observable, map } from 'rxjs';
@@ -40,10 +41,16 @@ export class CountryListComponent implements OnInit {
       }
     });
 
-    this.allcountries$ = this.store.select(selectFilteredCountries);
+    this.allcountries$ = this.store.select(selectCountriesByFiltering);
   }
 
   onSearchChange(value: string) {
     this.store.dispatch(setSearchQuery({ query: value }));
+  }
+
+  onRegionChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
+
+    this.store.dispatch(setFilterRegion({ region: value }));
   }
 }
