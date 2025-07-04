@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   selectCountry,
   loadCountryByName,
+  loadCountryByCode,
 } from '../../store/actions/country.action';
 import {
   selectSelectedCountry,
@@ -28,22 +29,19 @@ export class CountryDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store,
     private location: Location
-  ) {
-    // this.countryName = this.route.snapshot.paramMap.get('name');
-  }
+  ) {}
   ngOnInit(): void {
     this.loading$ = this.store.select(selectLoading);
 
     this.route.paramMap.subscribe((params) => {
-      this.countryName = params.get('countryName');
-    });
-
-    this.store.select(selectSelectedCountry).subscribe((country) => {
-      if (!country && this.countryName) {
-        this.store.dispatch(loadCountryByName({ name: this.countryName }));
+      const code = params.get('code');
+      if (code) {
+        this.store.dispatch(loadCountryByCode({ code }));
       }
     });
+
     this.countryDetails = this.store.select(selectSelectedCountry);
+    console.log(this.countryDetails);
   }
 
   onBackClicked() {

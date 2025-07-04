@@ -9,12 +9,16 @@ import {
   loadCountryByName,
   loadCountryByNameSuccess,
   loadCountryByNameFailure,
+  loadCountryByCodeFailure,
+  loadCountryByCodeSuccess,
+  loadCountryByCode,
 } from '../actions/country.action';
 
 @Injectable()
 export class CountryEffects {
   loadCountries$;
   loadCountryByName$;
+  loadCountryByCode$;
 
   constructor(
     private actions$: Actions,
@@ -42,6 +46,20 @@ export class CountryEffects {
             map((country) => loadCountryByNameSuccess({ country })),
             catchError((error) =>
               of(loadCountryByNameFailure({ error: error.message }))
+            )
+          )
+        )
+      )
+    );
+
+    this.loadCountryByCode$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(loadCountryByCode),
+        mergeMap(({ code }) =>
+          this.apiService.getCountryByCode(code).pipe(
+            map((country) => loadCountryByCodeSuccess({ country })),
+            catchError((error) =>
+              of(loadCountryByCodeFailure({ error: error.message }))
             )
           )
         )

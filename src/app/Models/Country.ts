@@ -16,7 +16,7 @@ export interface Country {
   languages: {
     [languageCode: string]: string;
   };
-  tld: string[];
+  tld?: string[];
   currencies: {
     [currencyCode: string]: {
       symbol: string;
@@ -29,4 +29,5 @@ export interface Country {
     svg: string;
     alt: string;
   };
+  cioc: string;
 }

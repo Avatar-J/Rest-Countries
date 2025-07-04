@@ -1,4 +1,4 @@
-<a [routerLink]="['/details', country?.name?.common]" (click)="onCountryClick(country!)">
+<a [routerLink]="['/details', country?.cioc]" (click)="onCountryClick(country!)">
     <div class="card-container">
         <div class="flag">
             <img [src]="country?.flags?.png" [alt]="country?.flags?.alt" />

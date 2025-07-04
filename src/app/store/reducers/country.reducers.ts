@@ -10,6 +10,9 @@ import {
   loadCountryByNameSuccess,
   loadCountryByNameFailure,
   loadCountryByName,
+  loadCountryByCode,
+  loadCountryByCodeFailure,
+  loadCountryByCodeSuccess,
 } from '../actions/country.action';
 
 export const initialState: CountryState = {
@@ -57,6 +60,23 @@ export const countryReducer = createReducer(
     error,
   })),
   on(loadCountryByName, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(loadCountryByCodeSuccess, (state, { country }) => ({
+    ...state,
+    selectedCountry: country,
+    loading: false,
+  })),
+
+  on(loadCountryByCodeFailure, (state, { error }) => ({
+    ...state,
+    selectedCountry: null,
+    loading: false,
+    error,
+  })),
+  on(loadCountryByCode, (state) => ({
     ...state,
     loading: true,
     error: null,

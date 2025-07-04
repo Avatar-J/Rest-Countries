@@ -9,7 +9,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'details/:name',
+    path: 'details/:code',
     component: CountryDetailComponent,
   },
 ];

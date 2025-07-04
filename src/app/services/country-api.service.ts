@@ -16,7 +16,7 @@ export class CountryApiService {
   ) {}
 
   private apiUrl =
-    'https://restcountries.com/v3.1/all?fields=name,population,capital,region,subregion,languages,tld,currencies,borders,flags';
+    'https://restcountries.com/v3.1/all?fields=name,population,capital,region,subregion,languages,cioc,currencies,borders,flags';
 
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(this.apiUrl).pipe(
@@ -32,6 +32,20 @@ export class CountryApiService {
     return this.http
       .get<Country>(
         `https://restcountries.com/v3.1/name/${name}?fullText=true&fields=name,population,capital,region,subregion,languages,tld,currencies,borders,flags`
+      )
+      .pipe(
+        retry(3),
+        catchError((err: HttpErrorResponse) => {
+          this.errorHandler.handleError(err);
+          return throwError(() => err);
+        })
+      );
+  }
+
+  getCountryByCode(code: string): Observable<Country> {
+    return this.http
+      .get<Country>(
+        `https://restcountries.com/v3.1/alpha/${code}?fullText=true&fields=name,population,capital,region,subregion,languages,tld,currencies,borders,flags`
       )
       .pipe(
         retry(3),

@@ -47,7 +47,7 @@
                 <div class="borders">
 
                     @for(c of country.borders; track $index){
-                    <a [routerLink]="">
+                    <a [routerLink]="['/details', c]">
                         <div class="border">
                             {{c}}
                         </div>
