@@ -2,5 +2,11 @@
 @use "../app/styles/mixins" as *;
 
 main {
-  @include flex(row, center, center);
+  @include flex(row, center, flex-start);
+  padding-top: 40px;
+  min-height: 100vh;
+}
+.dark-theme {
+  background-color: $bg-dark;
+  color: $text-color-dark;
 }

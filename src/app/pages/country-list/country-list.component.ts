@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { filter, Observable, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { selectTheme } from '../../store/selectors/theme.selector';
 
 @Component({
   selector: 'app-country-list',
@@ -29,8 +30,9 @@ export class CountryListComponent implements OnInit {
   allcountries$!: Observable<Country[]>;
   loading$!: Observable<boolean>;
   searchQuery = '';
+  store = inject(Store);
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.loading$ = this.store.select(selectLoading);
@@ -45,7 +47,8 @@ export class CountryListComponent implements OnInit {
   }
 
   onSearchChange(value: string) {
-    this.store.dispatch(setSearchQuery({ query: value }));
+    const edited = value.trim();
+    this.store.dispatch(setSearchQuery({ query: edited }));
   }
 
   onRegionChange(event: Event) {
@@ -53,4 +56,6 @@ export class CountryListComponent implements OnInit {
 
     this.store.dispatch(setFilterRegion({ region: value }));
   }
+
+  isDarkTheme$: Observable<boolean> = this.store.select(selectTheme);
 }

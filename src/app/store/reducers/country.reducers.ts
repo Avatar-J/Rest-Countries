@@ -1,6 +1,5 @@
 import { CountryState } from '../state';
 import { createReducer, on } from '@ngrx/store';
-import { Country } from '../../Models/Country';
 import {
   loadCountries,
   loadCountriesSuccess,
@@ -13,6 +12,7 @@ import {
   loadCountryByCode,
   loadCountryByCodeFailure,
   loadCountryByCodeSuccess,
+  loadBorderCountriesSuccess,
 } from '../actions/country.action';
 
 export const initialState: CountryState = {
@@ -22,6 +22,7 @@ export const initialState: CountryState = {
   error: null,
   searchQuery: '',
   filterRegion: '',
+  borderCountries: [],
 };
 
 export const countryReducer = createReducer(
@@ -80,5 +81,9 @@ export const countryReducer = createReducer(
     ...state,
     loading: true,
     error: null,
+  })),
+  on(loadBorderCountriesSuccess, (state, { countries }) => ({
+    ...state,
+    borderCountries: countries,
   }))
 );

@@ -8,8 +8,17 @@ header {
   color: $text-color-light;
   width: 100%;
   padding: 24px 40px;
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
 }
 .theme {
-  @include flex(row, flex-start, center, 20px);
+  @include flex(row, flex-start, center, 10px);
+
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.dark-theme {
+  background-color: $card-bg-dark;
+  color: $text-color-dark;
 }

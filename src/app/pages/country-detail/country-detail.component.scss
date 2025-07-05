@@ -171,3 +171,11 @@
     }
   }
 }
+.dark-theme {
+  background-color: $card-bg-dark !important;
+  color: $text-color-dark !important;
+
+  svg {
+    fill: $card-bg-dark !important;
+  }
+}

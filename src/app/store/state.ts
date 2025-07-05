@@ -11,6 +11,7 @@ export interface CountryState {
   error: string | null;
   searchQuery: string;
   filterRegion: string;
+  borderCountries: Country[];
 }
 export interface ThemeState {
   isDarkMode: boolean;

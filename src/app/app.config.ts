@@ -7,6 +7,7 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { countryReducer } from './store/reducers/country.reducers';
 import { CountryEffects } from './store/effects/country.effects';
+import { themeReducer } from './store/reducers/theme.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideState({ name: 'country', reducer: countryReducer }),
+    provideState({ name: 'theme', reducer: themeReducer }),
     provideEffects([CountryEffects]),
   ],
 };
