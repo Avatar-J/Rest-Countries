@@ -1,59 +1,120 @@
-# RestCountries
+# 🌍 RestCountries Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+This project is an Angular-based web application for exploring data about countries from the [REST Countries API](https://restcountries.com/). It includes features like search, region-based filtering, detailed views, theme switching (light/dark mode), and global state management using NgRx.
 
-## Development server
+> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
-To start a local development server, run:
+---
+
+## 🚀 Features
+
+- View a list of countries with key information (name, region, population, flag).
+- Search countries by name (full and partial matches).
+- Filter countries by region (Africa, Asia, Europe, Americas, Oceania).
+- Click on a country to view detailed information.
+- View neighboring border countries and navigate to their detail pages.
+- Toggle between light and dark themes.
+- Fully responsive UI optimized for mobile, tablet, and desktop.
+- Global state management with NgRx for countries, search, region filter, and theme.
+
+---
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/
+│   ├── components/          # Reusable UI components (e.g., country-card)
+│   ├── pages/               # Route-level components (e.g., country-list, country-details)
+│   ├── services/            # API service for REST Countries
+│   ├── store/               # NgRx: actions, reducers, selectors, effects
+│   ├── models/              # Interfaces (e.g., Country model)
+│   └── app.config.ts        # Application-wide providers (NgRx store, effects)
+```
+
+---
+
+## ⚙️ Setup & Run Instructions
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/your-username/rest-countries.git
+cd rest-countries
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Run the application locally**
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. **View in browser**
 
-## Code scaffolding
+Open `http://localhost:4200/`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🌐 Routing Overview
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| Route            | Component                 | Description                       |
+| ---------------- | ------------------------- | --------------------------------- |
+| `/`              | `CountryListComponent`    | Lists all countries               |
+| `/details/:code` | `CountryDetailsComponent` | Shows detailed info for a country |
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📦 API Consumption
 
-To build the project run:
+- Uses the [REST Countries v3 API](https://restcountries.com/v3.1/all)
+- Endpoints used:
+  - `/all` – fetch all countries
+  - `/alpha/{code}` – fetch country by 3-letter code
+  - `/alpha?codes={code1,code2}` – fetch multiple countries by codes
 
-```bash
-ng build
-```
+API calls are handled via a dedicated service: `CountryApiService`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🧠 NgRx Store Implementation
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### ✔ State Slices
 
-```bash
-ng test
-```
+- `country`: manages country data, loading state, search query, and region filter.
+- `theme`: manages light/dark mode.
 
-## Running end-to-end tests
+### ✔ Actions
 
-For end-to-end (e2e) testing, run:
+- `loadCountries`, `loadCountriesSuccess`, `loadCountriesFailure`
+- `setSearchQuery`, `setFilterRegion`
+- `switchTheme`
 
-```bash
-ng e2e
-```
+### ✔ Reducers
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Handle updates to each part of the state based on dispatched actions.
 
-## Additional Resources
+### ✔ Selectors
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `selectAllCountries`, `selectFilteredCountries`, `selectLoading`, `selectTheme`
+
+### ✔ Effects
+
+- `loadCountries` effect makes API call and dispatches `success` or `failure` actions.
+- `loadCountriesByCode` effect makes API call and dispatches `success` or `failure` actions.
+
+---
+
+## 🎨 Theme Switching
+
+- Theme preference is managed globally with NgRx.
+- `switchTheme` toggles between dark and light modes.
+- The current theme is applied using conditional class bindings (e.g., `ngClass="{'dark-theme': isDarkTheme}"`).
+- Styles adapt using SCSS with class-specific overrides.
+
+---
