@@ -56,4 +56,14 @@ export const loadCountryByCodeFailure = createAction(
   props<{ error: string }>()
 );
 
+export const loadBorderCountries = createAction(
+  '[Country] Load Border Countries',
+  props<{ codes: string[] }>()
+);
+
+export const loadBorderCountriesSuccess = createAction(
+  '[Country] Load Border Countries Success',
+  props<{ countries: Country[] }>()
+);
+
 export const switchTheme = createAction('[Theme] Switch theme');

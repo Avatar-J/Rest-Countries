@@ -41,7 +41,6 @@ export class CountryDetailComponent implements OnInit {
     });
 
     this.countryDetails = this.store.select(selectSelectedCountry);
-    console.log(this.countryDetails);
   }
 
   onBackClicked() {
@@ -52,6 +51,11 @@ export class CountryDetailComponent implements OnInit {
     const firstLangCode = Object.keys(nativeNames)[0];
     return nativeNames[firstLangCode]?.common || 'N/A';
   }
+  // getCommonName(code: string) {
+  //   if (code) {
+  //       this.store.dispatch(loadCountryByCode({ code }));
+  //     }
+  // }
 
   getCurrency(country: Country): string {
     const currencies = country.currencies;

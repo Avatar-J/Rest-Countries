@@ -53,3 +53,8 @@ export const selectCountriesByFiltering = createSelector(
     });
   }
 );
+
+export const selectBorderCountries = createSelector(
+  selectCountryState,
+  (state) => state.borderCountries
+);
