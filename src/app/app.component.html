@@ -1,5 +1,5 @@
 <app-header />
 
-<main>
+<main [ngClass]="{ 'dark-theme': isDarkTheme$ | async }">
   <router-outlet />
 </main>

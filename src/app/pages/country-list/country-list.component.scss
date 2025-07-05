@@ -114,3 +114,7 @@
     gap: 30px;
   }
 }
+.dark-theme {
+  background-color: $card-bg-dark !important;
+  color: $text-color-dark !important;
+}

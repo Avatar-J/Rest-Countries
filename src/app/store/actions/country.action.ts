@@ -55,3 +55,5 @@ export const loadCountryByCodeFailure = createAction(
   '[Country] Load Country By Code Failure',
   props<{ error: string }>()
 );
+
+export const switchTheme = createAction('[Theme] Switch theme');

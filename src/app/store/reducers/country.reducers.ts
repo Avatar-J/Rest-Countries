@@ -1,6 +1,5 @@
 import { CountryState } from '../state';
 import { createReducer, on } from '@ngrx/store';
-import { Country } from '../../Models/Country';
 import {
   loadCountries,
   loadCountriesSuccess,

@@ -1,5 +1,5 @@
 <a [routerLink]="['/details', country?.cioc]" (click)="onCountryClick(country!)">
-    <div class="card-container">
+    <div class="card-container" [ngClass]="{ 'dark-theme': isDarkTheme$ | async }">
         <div class="flag">
             <img [src]="country?.flags?.png" [alt]="country?.flags?.alt" />
         </div>
